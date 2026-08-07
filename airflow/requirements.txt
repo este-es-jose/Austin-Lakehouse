@@ -1,0 +1,3 @@
+psycopg[binary]==3.3.4
+pyspark==3.5.8
+dbt-trino==1.10.2

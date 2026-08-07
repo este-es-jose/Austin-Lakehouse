@@ -1,0 +1,34 @@
+# Secrets and local environments
+.env
+.venv/
+
+# Data
+data/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Airflow
+airflow/logs/
+
+# dbt
+austin_crime/target/
+austin_crime/logs/
+austin_crime/dbt_packages/
+**/.user.yml
+
+# Editors and operating systems
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local logs
+/logs/
+
+# Local files
+api.py
+data.ipynb

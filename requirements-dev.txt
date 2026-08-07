@@ -1,0 +1,5 @@
+pytest==9.1.1
+requests==2.34.2
+python-dotenv==1.2.2
+psycopg[binary]==3.3.4
+dbt-trino==1.10.2

@@ -1,0 +1,14 @@
+.git
+.github
+.env
+.venv
+data
+airflow/logs
+austin_crime/target
+austin_crime/logs
+austin_crime/dbt_packages
+**/__pycache__
+*.pyc
+.pytest_cache
+logs
+**/.user.yml

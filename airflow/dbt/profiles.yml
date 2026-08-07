@@ -1,0 +1,14 @@
+austin_crime:
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: dbt
+      host: trino
+      port: 8080
+      database: lakehouse
+      schema: dbt_dev
+      http_scheme: http
+      threads: 4
+
+  target: dev

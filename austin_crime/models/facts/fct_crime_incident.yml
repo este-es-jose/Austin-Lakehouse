@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: fct_crime_incident
+    description: One row per Austin crime report.
+
+    columns:
+      - name: incident_report_number
+        description: Business identifier for the crime report.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: incident_count
+        description: Additive measure with a value of one per incident.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1]
+                quote: false

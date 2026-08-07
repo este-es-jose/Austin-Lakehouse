@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_crime_reports
+    description: Staging view of cleaned Austin crime reports.
+
+    columns:
+      - name: source_row_id
+        description: Technical row identifier provided by Socrata.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: incident_report_number
+        description: Business identifier assigned to each crime report.
+        data_tests:
+          - not_null
+          - unique
