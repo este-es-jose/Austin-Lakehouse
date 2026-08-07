@@ -447,7 +447,7 @@ def record_non_extracting_run(
 
 def record_no_change_run():
     return record_non_extracting_run(
-        run_type="INCREMENTAL",
+        run_type="NO_CHANGES",
         pipeline_status="SUCCESS",
         batch_status="SUCCESS",
     )

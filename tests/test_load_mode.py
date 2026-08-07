@@ -10,6 +10,7 @@ os.environ.setdefault("POSTGRES_DB", "test")
 os.environ.setdefault("POSTGRES_USER", "test")
 os.environ.setdefault("POSTGRES_PASSWORD", "test")
 
+from src.ingestion import extract_incremental
 from src.ingestion.extract_incremental import choose_load_mode
 
 
@@ -45,3 +46,26 @@ def test_negative_change_count_is_rejected():
 def test_change_count_cannot_exceed_source():
     with pytest.raises(ValueError):
         choose_load_mode(101, 100)
+
+
+def test_no_change_run_uses_no_changes_run_type(
+    monkeypatch,
+):
+    recorded_values = {}
+
+    def fake_record_non_extracting_run(**values):
+        recorded_values.update(values)
+
+    monkeypatch.setattr(
+        extract_incremental,
+        "record_non_extracting_run",
+        fake_record_non_extracting_run,
+    )
+
+    extract_incremental.record_no_change_run()
+
+    assert recorded_values == {
+        "run_type": "NO_CHANGES",
+        "pipeline_status": "SUCCESS",
+        "batch_status": "SUCCESS",
+    }
