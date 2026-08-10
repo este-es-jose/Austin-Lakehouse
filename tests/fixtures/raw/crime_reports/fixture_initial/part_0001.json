@@ -1,0 +1,18 @@
+[
+  {
+    ":id": "fixture-row-100",
+    ":version": "1",
+    ":created_at": "2026-08-01T12:00:00.000Z",
+    ":updated_at": "2026-08-01T12:00:00.000Z",
+    "incident_report_number": "FIXTURE-100",
+    "crime_type": "THEFT"
+  },
+  {
+    ":id": "fixture-row-200",
+    ":version": "1",
+    ":created_at": "2026-08-01T12:00:00.000Z",
+    ":updated_at": "2026-08-01T12:00:00.000Z",
+    "incident_report_number": "FIXTURE-200",
+    "crime_type": "BURGLARY"
+  }
+]

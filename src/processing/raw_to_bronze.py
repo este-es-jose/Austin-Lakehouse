@@ -102,12 +102,15 @@ spark = (
 )
 
 spark.sparkContext.setLogLevel("WARN")
+raw_root = os.getenv(
+    "RAW_CRIME_REPORTS_ROOT",
+    (
+        "s3a://austin-crime-lakehouse/"
+        "raw/crime_reports"
+    ),
+).rstrip("/")
 
-raw_prefix = (
-    "s3a://austin-crime-lakehouse/"
-    "raw/crime_reports/"
-    f"{run_id}/"
-)
+raw_prefix = f"{raw_root}/{run_id}/"
 
 raw_file = f"{raw_prefix}part_*.json"
 
@@ -242,9 +245,17 @@ bronze_updates_df.select(
     "source_file"
 ).show(5, truncate=False)
 
-spark.sql("CREATE NAMESPACE IF NOT EXISTS lakehouse.bronze")
+bronze_namespace = os.getenv(
+    "BRONZE_NAMESPACE",
+    "lakehouse.bronze",
+)
 
-table_name = "lakehouse.bronze.crime_reports"
+spark.sql(
+    f"CREATE NAMESPACE IF NOT EXISTS "
+    f"{bronze_namespace}"
+)
+
+table_name = f"{bronze_namespace}.crime_reports"
 
 if full_snapshot:
     manifest_file = f"{raw_prefix}manifest.json"
