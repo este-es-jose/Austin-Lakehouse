@@ -1,0 +1,214 @@
+name: Bronze integration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bronze-merge:
+    name: Validate Bronze merge
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      SOCRATA_APP_TOKEN: ci-token
+
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: '5432'
+      POSTGRES_USER: ci-postgres
+      POSTGRES_PASSWORD: ci-postgres-password
+      POSTGRES_DB: ci-lakehouse
+
+      MINIO_ROOT_USER: ci-minio
+      MINIO_ROOT_PASSWORD: ci-minio-password
+
+      GRAFANA_ADMIN_USER: ci-admin
+      GRAFANA_ADMIN_PASSWORD: ci-grafana-password
+
+      SPARK_PACKAGES: org.apache.hadoop:hadoop-aws:3.3.4,org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.11.0,org.apache.iceberg:iceberg-aws-bundle:1.11.0,org.postgresql:postgresql:42.7.10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Start integration services
+        run: docker compose up -d minio postgres spark trino
+
+      - name: Wait for services
+        run: |
+          timeout 120 bash -c '
+            until curl --fail --silent \
+              http://localhost:9000/minio/health/live \
+              > /dev/null; do
+              sleep 2
+            done
+          '
+
+          timeout 120 bash -c '
+            until docker compose exec -T postgres \
+              pg_isready \
+              -U "$POSTGRES_USER" \
+              -d "$POSTGRES_DB"; do
+              sleep 2
+            done
+          '
+
+          timeout 180 bash -c '
+            until curl --fail --silent \
+              http://localhost:8080/v1/info \
+              > /dev/null; do
+              sleep 3
+            done
+          '
+
+      - name: Create test bucket
+        run: |
+          docker compose exec -T minio sh -c '
+            set -eu
+            mc alias set ci \
+              http://localhost:9000 \
+              "$MINIO_ROOT_USER" \
+              "$MINIO_ROOT_PASSWORD"
+            mc mb --ignore-existing \
+              ci/austin-crime-lakehouse
+          '
+
+      - name: Load initial fixture
+        run: |
+          docker compose exec -T \
+            -e RAW_CRIME_REPORTS_ROOT=file:///opt/spark/tests/fixtures/raw/crime_reports \
+            -e BRONZE_NAMESPACE=lakehouse.integration_test \
+            spark \
+            /opt/spark/bin/spark-submit \
+            --driver-memory 2g \
+            --conf spark.jars.ivy=/tmp/.ivy2 \
+            --packages "$SPARK_PACKAGES" \
+            /opt/spark/work-dir/raw_to_bronze.py \
+            fixture_initial
+
+      - name: Load incremental fixture
+        run: |
+          docker compose exec -T \
+            -e RAW_CRIME_REPORTS_ROOT=file:///opt/spark/tests/fixtures/raw/crime_reports \
+            -e BRONZE_NAMESPACE=lakehouse.integration_test \
+            spark \
+            /opt/spark/bin/spark-submit \
+            --driver-memory 2g \
+            --conf spark.jars.ivy=/tmp/.ivy2 \
+            --packages "$SPARK_PACKAGES" \
+            /opt/spark/work-dir/raw_to_bronze.py \
+            fixture_incremental
+
+      - name: Validate merged records
+        run: |
+          result="$(
+            docker compose exec -T trino trino \
+              --output-format TSV \
+              --execute "
+                WITH actual AS (
+                  SELECT
+                    incident_report_number,
+                    crime_type,
+                    source_version,
+                    ingestion_run_id
+                  FROM lakehouse.integration_test.crime_reports
+                ),
+                expected (
+                  incident_report_number,
+                  crime_type,
+                  source_version,
+                  ingestion_run_id
+                ) AS (
+                  VALUES
+                    (
+                      'FIXTURE-100',
+                      'THEFT',
+                      '1',
+                      'fixture_initial'
+                    ),
+                    (
+                      'FIXTURE-200',
+                      'BURGLARY OF VEHICLE',
+                      '2',
+                      'fixture_incremental'
+                    ),
+                    (
+                      'FIXTURE-300',
+                      'AUTO THEFT',
+                      '1',
+                      'fixture_incremental'
+                    )
+                ),
+                differences AS (
+                  (TABLE actual EXCEPT TABLE expected)
+                  UNION ALL
+                  (TABLE expected EXCEPT TABLE actual)
+                )
+                SELECT
+                  (SELECT count(*) FROM actual),
+                  (SELECT count(*) FROM differences)
+              "
+          )"
+
+          echo "Record count and differences: $result"
+          test "$result" = $'3\t0'
+
+      - name: Record snapshot count
+        id: snapshots_before
+        run: |
+          snapshot_count="$(
+            docker compose exec -T trino trino \
+              --output-format TSV \
+              --execute '
+                SELECT count(*)
+                FROM lakehouse.integration_test."crime_reports$snapshots"
+              '
+          )"
+
+          echo "Snapshot count before rerun: $snapshot_count"
+          test "$snapshot_count" = "2"
+          echo "count=$snapshot_count" >> "$GITHUB_OUTPUT"
+
+      - name: Rerun incremental fixture
+        run: |
+          docker compose exec -T \
+            -e RAW_CRIME_REPORTS_ROOT=file:///opt/spark/tests/fixtures/raw/crime_reports \
+            -e BRONZE_NAMESPACE=lakehouse.integration_test \
+            spark \
+            /opt/spark/bin/spark-submit \
+            --driver-memory 2g \
+            --conf spark.jars.ivy=/tmp/.ivy2 \
+            --packages "$SPARK_PACKAGES" \
+            /opt/spark/work-dir/raw_to_bronze.py \
+            fixture_incremental
+
+      - name: Validate idempotency
+        env:
+          SNAPSHOTS_BEFORE: ${{ steps.snapshots_before.outputs.count }}
+        run: |
+          snapshots_after="$(
+            docker compose exec -T trino trino \
+              --output-format TSV \
+              --execute '
+                SELECT count(*)
+                FROM lakehouse.integration_test."crime_reports$snapshots"
+              '
+          )"
+
+          echo "Snapshot count after rerun: $snapshots_after"
+          test "$snapshots_after" = "$SNAPSHOTS_BEFORE"
+
+      - name: Show service logs after failure
+        if: failure()
+        run: |
+          docker compose ps
+          docker compose logs \
+            --no-color \
+            --tail 200 \
+            minio postgres spark trino
+
+      - name: Clean up integration services
+        if: always()
+        run: docker compose down --volumes --remove-orphans
