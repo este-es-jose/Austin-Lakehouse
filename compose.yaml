@@ -28,6 +28,7 @@ services:
 
     volumes:
       - ./src/processing:/opt/spark/work-dir
+      - ./tests:/opt/spark/tests:ro
 
     depends_on:
       - minio
