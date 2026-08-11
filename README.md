@@ -65,6 +65,14 @@ dbt, and cross-layer validation succeed. A separate reconciliation DAG
 runs at 8:00 AM Central Time on the first day of each month and performs
 a full source-to-Bronze comparison.
 
+The Austin dataset periodically republishes its complete contents and
+regenerates Socrata system IDs, versions, and update timestamps. During
+those publications, every row satisfies the incremental timestamp
+filter even though most business values are unchanged. The pipeline
+therefore uses a full snapshot for correctness and to capture removed
+incidents. This is a property of this dataset's publication process, not
+a claim about every Socrata dataset.
+
 ## Data layers
 
 | Layer | Purpose |
@@ -185,3 +193,8 @@ dataset and a local Docker environment. It does not yet implement a
 Polaris REST catalog, quarantine/history tables, automated schema-drift
 classification, cloud deployment, or machine learning. These remain
 possible future phases after the batch platform is stable.
+
+A future ingestion optimization may use a source-calculated hash of the
+stable business fields. That approach should only be implemented if
+Socrata can calculate the fingerprint reliably; `:id`, `:version`, and
+`:updated_at` are not stable change indicators for this dataset.
