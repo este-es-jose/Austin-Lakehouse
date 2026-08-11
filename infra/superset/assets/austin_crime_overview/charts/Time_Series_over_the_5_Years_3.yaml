@@ -1,0 +1,63 @@
+slice_name: Time Series over the 5 Years
+description: null
+certified_by: null
+certification_details: null
+viz_type: compare
+params:
+  datasource: 1__table
+  viz_type: compare
+  slice_id: 3
+  granularity_sqla: occ_month
+  time_grain_sqla: P1M
+  time_range: 'DATEADD(DATETIME("2026-08-01T15:02:42"), -5, year) : 2026-08-01T15:02:42'
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: incident_count
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 4
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: d1ffeb0d-3cb7-4aa5-9eec-368bcbc98a2d
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: SUM(incident_count)
+    optionName: metric_u97isb3g2qr_fge8661tn55
+    sqlExpression: null
+  adhoc_filters: []
+  groupby: []
+  order_desc: true
+  row_limit: 10000
+  color_scheme: supersetColors
+  bottom_margin: auto
+  x_ticks_layout: auto
+  x_axis_format: smart_date
+  left_margin: auto
+  y_axis_format: SMART_NUMBER
+  y_axis_bounds:
+  - null
+  - null
+  rolling_type: None
+  comparison_type: values
+  annotation_layers: []
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"time_range":"DATEADD(DATETIME(\"2026-08-01T15:02:42\"),
+  -5, year) : 2026-08-01T15:02:42","granularity":"occ_month","filters":[],"extras":{"time_grain_sqla":"P1M","having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"incident_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":4,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"d1ffeb0d-3cb7-4aa5-9eec-368bcbc98a2d","verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(incident_count)","optionName":"metric_u97isb3g2qr_fge8661tn55","sqlExpression":null}],"annotation_layers":[],"row_limit":10000,"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"1__table","viz_type":"compare","slice_id":3,"granularity_sqla":"occ_month","time_grain_sqla":"P1M","time_range":"DATEADD(DATETIME(\"2026-08-01T15:02:42\"),
+  -5, year) : 2026-08-01T15:02:42","metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"incident_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":4,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"d1ffeb0d-3cb7-4aa5-9eec-368bcbc98a2d","verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(incident_count)","optionName":"metric_u97isb3g2qr_fge8661tn55","sqlExpression":null}],"adhoc_filters":[],"groupby":[],"order_desc":true,"row_limit":10000,"color_scheme":"supersetColors","bottom_margin":"auto","x_ticks_layout":"auto","x_axis_format":"smart_date","left_margin":"auto","y_axis_format":"SMART_NUMBER","y_axis_bounds":[null,null],"rolling_type":"None","comparison_type":"values","annotation_layers":[],"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 9262a3fb-81b6-49c0-90a3-5ee2d5944821
+version: 1.0.0
+dataset_uuid: ac9bd330-8206-4ba0-9b0e-33a3487d285c

@@ -1,0 +1,348 @@
+dashboard_title: Crime Dashboard
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: false
+uuid: ff8b39a5-8a00-4078-97b7-68a2bc436a0b
+position:
+  CHART-3ERlIH9VgF1lPqZcaG4k_:
+    children: []
+    id: CHART-3ERlIH9VgF1lPqZcaG4k_
+    meta:
+      chartId: 6
+      height: 50
+      sliceName: Family Violence Rates
+      uuid: 0fc50148-17a8-480f-9913-6416981592ee
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-llmj6pBsvgOgN1Dg0Q46I
+    type: CHART
+  CHART-3_-tHW5XyDK-d6xVIDTyb:
+    children: []
+    id: CHART-3_-tHW5XyDK-d6xVIDTyb
+    meta:
+      chartId: 1
+      height: 50
+      sliceName: Incident Counts
+      uuid: d99af6af-459e-409d-8f93-bfc99ddc36f9
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-llmj6pBsvgOgN1Dg0Q46I
+    type: CHART
+  CHART-6T2tNvPcD9dIpCtHcNAGX:
+    children: []
+    id: CHART-6T2tNvPcD9dIpCtHcNAGX
+    meta:
+      chartId: 2
+      height: 50
+      sliceName: ' Donut'
+      sliceNameOverride: Donut
+      uuid: 195f4131-143d-4c92-a74c-763321bb7f12
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-y27yd_BMSm61dThFezAzt
+    type: CHART
+  CHART-9ioJETk34LyJi6ADNFbtF:
+    children: []
+    id: CHART-9ioJETk34LyJi6ADNFbtF
+    meta:
+      chartId: 7
+      height: 50
+      sliceName: Top 10 Crime Types
+      uuid: 75bd071f-d4ee-4dfb-bad9-aa41ffe9c8af
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-tOKKLgqj7-wV4MfF6XZOe
+    type: CHART
+  CHART-LDRQWTBlNND5gb541rC2v:
+    children: []
+    id: CHART-LDRQWTBlNND5gb541rC2v
+    meta:
+      chartId: 5
+      height: 50
+      sliceName: Clearance Rate
+      uuid: b47f7aa0-16d0-4aa8-adf0-b4229cae927a
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-llmj6pBsvgOgN1Dg0Q46I
+    type: CHART
+  CHART-OjkW-AZydNiKIChtD8D-a:
+    children: []
+    id: CHART-OjkW-AZydNiKIChtD8D-a
+    meta:
+      chartId: 8
+      height: 50
+      sliceName: Monthly Clearance Rate
+      uuid: dc2af6c2-97d8-4ad3-8e4b-fc87b7b12c61
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-8CETUy0o3TMUOXrKAx1mz
+    type: CHART
+  CHART-S5k6PfjvsEK5EptugIYWY:
+    children: []
+    id: CHART-S5k6PfjvsEK5EptugIYWY
+    meta:
+      chartId: 3
+      height: 50
+      sliceName: Time Series over the 5 Years
+      uuid: 9262a3fb-81b6-49c0-90a3-5ee2d5944821
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-8CETUy0o3TMUOXrKAx1mz
+    type: CHART
+  CHART-x0-BC-F4xNLNNUyerL_SE:
+    children: []
+    id: CHART-x0-BC-F4xNLNNUyerL_SE
+    meta:
+      chartId: 4
+      height: 50
+      sliceName: Monthly Incidents Trend
+      uuid: eac89890-3e52-4930-868f-f5e1bfa0a0ce
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-tOKKLgqj7-wV4MfF6XZOe
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  DIVIDER-1q-eI_JbClonLU4BLOI27:
+    children: []
+    id: DIVIDER-1q-eI_JbClonLU4BLOI27
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  DIVIDER-8p3cyDELS10rfOOWXSToF:
+    children: []
+    id: DIVIDER-8p3cyDELS10rfOOWXSToF
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  GRID_ID:
+    children:
+    - ROW-llmj6pBsvgOgN1Dg0Q46I
+    - DIVIDER-8p3cyDELS10rfOOWXSToF
+    - ROW-tOKKLgqj7-wV4MfF6XZOe
+    - DIVIDER-1q-eI_JbClonLU4BLOI27
+    - ROW-8CETUy0o3TMUOXrKAx1mz
+    - ROW-y27yd_BMSm61dThFezAzt
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Crime Dashboard
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-8CETUy0o3TMUOXrKAx1mz:
+    children:
+    - CHART-OjkW-AZydNiKIChtD8D-a
+    - CHART-S5k6PfjvsEK5EptugIYWY
+    id: ROW-8CETUy0o3TMUOXrKAx1mz
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-llmj6pBsvgOgN1Dg0Q46I:
+    children:
+    - CHART-3_-tHW5XyDK-d6xVIDTyb
+    - CHART-LDRQWTBlNND5gb541rC2v
+    - CHART-3ERlIH9VgF1lPqZcaG4k_
+    id: ROW-llmj6pBsvgOgN1Dg0Q46I
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-tOKKLgqj7-wV4MfF6XZOe:
+    children:
+    - CHART-x0-BC-F4xNLNNUyerL_SE
+    - CHART-9ioJETk34LyJi6ADNFbtF
+    id: ROW-tOKKLgqj7-wV4MfF6XZOe
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-y27yd_BMSm61dThFezAzt:
+    children:
+    - CHART-6T2tNvPcD9dIpCtHcNAGX
+    id: ROW-y27yd_BMSm61dThFezAzt
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+metadata:
+  chart_configuration:
+    '2':
+      id: 2
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+    '4':
+      id: 4
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 5
+        - 6
+        - 7
+        - 8
+    '7':
+      id: 7
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 8
+    '8':
+      id: 8
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+  map_label_colors:
+    '1': '#FF7F44'
+    '2': '#666666'
+    '3': '#1FA8C9'
+    '4': '#454E7C'
+    '5': '#FCC700'
+    '6': '#A38F79'
+    '7': '#E04355'
+    '8': '#3CCCCB'
+    '9': '#5AC189'
+    '10': '#A868B7'
+    SUM(incident_count): '#1FA8C9'
+    total_incidents: '#1FA8C9'
+  color_scheme: ''
+  refresh_frequency: 0
+  color_scheme_domain: []
+  expanded_slices: {}
+  label_colors: {}
+  shared_label_colors:
+  - total_incidents
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  native_filter_configuration:
+  - cascadeParentIds: []
+    controlValues:
+      enableEmptyFilter: false
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    description: ''
+    filterType: filter_time
+    id: NATIVE_FILTER-njy2C2kHWbKGnrEuOqTXR
+    name: Date Range
+    scope:
+      excluded: []
+      rootPath:
+      - ROOT_ID
+    targets:
+    - {}
+    type: NATIVE_FILTER
+    chartsInScope:
+    - 3
+    - 1
+    - 4
+    - 5
+    - 6
+    - 8
+    - 7
+    - 2
+    tabsInScope: []
+  - id: NATIVE_FILTER-xYsdbXC-b5NfMYuagWr2k
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      creatable: true
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: Crime Type
+    filterType: filter_select
+    targets:
+    - column:
+        name: crime_type
+      datasetUuid: ac9bd330-8206-4ba0-9b0e-33a3487d285c
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+theme_uuid: null
+version: 1.0.0

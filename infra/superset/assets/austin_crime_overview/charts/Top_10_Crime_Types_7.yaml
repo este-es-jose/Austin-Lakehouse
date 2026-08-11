@@ -1,0 +1,84 @@
+slice_name: Top 10 Crime Types
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 1__table
+  viz_type: echarts_timeseries_bar
+  x_axis: crime_type
+  time_grain_sqla: P1D
+  x_axis_sort: total_incidents
+  x_axis_sort_asc: true
+  metrics:
+  - total_incidents
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: occ_month
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_1m8dju7to74h_ykyodhvg6ks
+  - expressionType: SQL
+    sqlExpression: "occ_month < CAST(\r\n    date_trunc('month', current_date)\r\n\
+      \    AS date\r\n)"
+    clause: WHERE
+    subject: null
+    operator: null
+    comparator: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_z11wg1yeo3e_k89g4s4nelg
+  limit: 50
+  group_others_when_limit_reached: false
+  order_desc: true
+  row_limit: 10
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: colorsOfRainbow
+  time_shift_color: true
+  show_value: true
+  only_total: true
+  minorTicks: false
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelInterval: auto
+  y_axis_format: SMART_NUMBER
+  truncateYAxis: false
+  y_axis_bounds:
+  - null
+  - null
+  truncateXAxis: true
+  rich_tooltip: true
+  showTooltipTotal: true
+  showTooltipPercentage: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[{"col":"occ_month","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":"(occ_month < CAST(\r\n    date_trunc(''month'',
+  current_date)\r\n    AS date\r\n))"},"applied_time_extras":{},"columns":[{"timeGrain":"P1D","columnType":"BASE_AXIS","sqlExpression":"crime_type","label":"crime_type","expressionType":"SQL","isColumnReference":true}],"metrics":["total_incidents"],"orderby":[["total_incidents",false]],"annotation_layers":[],"row_limit":10,"series_columns":[],"series_limit":50,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["crime_type"],"columns":[],"aggregates":{"total_incidents":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"sort","options":{"by":"total_incidents","ascending":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"1__table","viz_type":"echarts_timeseries_bar","x_axis":"crime_type","time_grain_sqla":"P1D","x_axis_sort":"total_incidents","x_axis_sort_asc":true,"metrics":["total_incidents"],"groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"occ_month","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_1m8dju7to74h_ykyodhvg6ks"},{"expressionType":"SQL","sqlExpression":"occ_month
+  < CAST(\r\n    date_trunc(''month'', current_date)\r\n    AS date\r\n)","clause":"WHERE","subject":null,"operator":null,"comparator":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_z11wg1yeo3e_k89g4s4nelg"}],"limit":50,"group_others_when_limit_reached":false,"order_desc":true,"row_limit":10,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"horizontal","x_axis_title_margin":15,"y_axis_title_margin":30,"y_axis_title_position":"Left","sort_series_type":"sum","sort_series_ascending":false,"color_scheme":"colorsOfRainbow","time_shift_color":true,"show_value":true,"only_total":true,"minorTicks":false,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelInterval":"auto","y_axis_format":"SMART_NUMBER","truncateYAxis":false,"y_axis_bounds":[null,null],"truncateXAxis":true,"rich_tooltip":true,"showTooltipTotal":true,"showTooltipPercentage":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 75bd071f-d4ee-4dfb-bad9-aa41ffe9c8af
+version: 1.0.0
+dataset_uuid: ac9bd330-8206-4ba0-9b0e-33a3487d285c
