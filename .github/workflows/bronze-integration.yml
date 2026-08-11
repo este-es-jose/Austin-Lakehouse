@@ -27,6 +27,9 @@ jobs:
       GRAFANA_ADMIN_USER: ci-admin
       GRAFANA_ADMIN_PASSWORD: ci-grafana-password
 
+      SUPERSET_DATABASE: superset
+      SUPERSET_SECRET_KEY: ci-superset-secret-key-not-for-real-use
+
       SPARK_PACKAGES: org.apache.hadoop:hadoop-aws:3.3.4,org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.11.0,org.apache.iceberg:iceberg-aws-bundle:1.11.0,org.postgresql:postgresql:42.7.10
 
     steps:
