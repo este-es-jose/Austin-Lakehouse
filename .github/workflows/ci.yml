@@ -36,7 +36,12 @@ jobs:
           python -m pip install -r requirements-dev.txt
 
       - name: Compile Python files
-        run: python -m compileall -q src airflow/dags tests
+        run: >
+          python -m compileall -q
+          src
+          airflow/dags
+          tests
+          infra/superset
 
       - name: Run unit tests
         run: python -m pytest
@@ -68,4 +73,11 @@ jobs:
           docker build
           --file airflow/Dockerfile
           --tag austin-crime-airflow:ci
+          .
+
+      - name: Build Superset image
+        run: >
+          docker build
+          --file infra/superset/Dockerfile
+          --tag austin-crime-superset:ci
           .
