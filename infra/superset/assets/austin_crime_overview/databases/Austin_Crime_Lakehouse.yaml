@@ -1,0 +1,14 @@
+database_name: Austin Crime Lakehouse
+sqlalchemy_uri: trino://superset@trino:8080/lakehouse/dbt_dev
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_dml: false
+allow_file_upload: false
+extra:
+  allows_virtual_table_explore: true
+impersonate_user: false
+uuid: 2f5723af-7f08-4e38-8e2e-67eb017eff6d
+version: 1.0.0

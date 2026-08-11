@@ -59,6 +59,8 @@ jobs:
           MINIO_ROOT_PASSWORD: ci-minio-password
           GRAFANA_ADMIN_USER: ci-admin
           GRAFANA_ADMIN_PASSWORD: ci-grafana-password
+          SUPERSET_DATABASE: superset
+          SUPERSET_SECRET_KEY: ci-superset-secret-key-not-for-real-use
         run: docker compose config --quiet
 
       - name: Build Airflow image

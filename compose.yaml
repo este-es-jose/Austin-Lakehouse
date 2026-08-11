@@ -178,9 +178,51 @@ services:
     depends_on:
       - prometheus
 
+  superset:
+    image: austin-crime-superset:6.0.0
+
+    build:
+      context: .
+      dockerfile: infra/superset/Dockerfile
+
+    ports:
+      - '8088:8088'
+
+    environment:
+      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      SUPERSET_DATABASE: ${SUPERSET_DATABASE}
+
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: '5432'
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - superset_data:/app/superset_home
+      - ./infra/superset/superset_config.py:/app/pythonpath/superset_config.py:ro
+
+    healthcheck:
+      test:
+        [
+          'CMD',
+          '/app/.venv/bin/python',
+          '-c',
+          "import urllib.request; urllib.request.urlopen('http://localhost:8088/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   minio_data:
   postgres_data:
   airflow_data:
   prometheus_data:
   grafana_data:
+  superset_data:

@@ -1,0 +1,86 @@
+slice_name: Monthly Incidents Trend
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_line
+params:
+  datasource: 1__table
+  viz_type: echarts_timeseries_line
+  slice_id: 4
+  x_axis: occ_month
+  time_grain_sqla: P1M
+  x_axis_sort_asc: true
+  metrics:
+  - total_incidents
+  groupby: []
+  contributionMode: null
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_nyroek3kgfj_7i8wcqkqn2e
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: occ_month
+  - clause: WHERE
+    comparator: null
+    datasourceWarning: false
+    expressionType: SQL
+    filterOptionName: filter_tbmcwesixnm_ai270nbmpgb
+    isExtra: false
+    isNew: false
+    operator: null
+    sqlExpression: "occ_month < CAST(\n    date_trunc('month', current_date)\n   \
+      \ AS date\n)"
+    subject: null
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: false
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  sort_series_ascending: false
+  color_scheme: supersetColors
+  show_value: false
+  area: true
+  opacity: 0.2
+  markerEnabled: true
+  markerSize: 6
+  minorTicks: false
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelInterval: auto
+  rich_tooltip: true
+  showTooltipTotal: true
+  showTooltipPercentage: true
+  tooltipTimeFormat: smart_date
+  y_axis_format: SMART_NUMBER
+  logAxis: false
+  minorSplitLine: false
+  truncateXAxis: true
+  truncateYAxis: true
+  y_axis_bounds:
+  - null
+  - null
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[{"col":"occ_month","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1M","having":"","where":"(occ_month < CAST(\n    date_trunc(''month'',
+  current_date)\n    AS date\n))"},"applied_time_extras":{},"columns":[{"timeGrain":"P1M","columnType":"BASE_AXIS","sqlExpression":"occ_month","label":"occ_month","expressionType":"SQL","isColumnReference":true}],"metrics":["total_incidents"],"orderby":[["total_incidents",false]],"annotation_layers":[],"row_limit":10000,"series_columns":[],"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["occ_month"],"columns":[],"aggregates":{"total_incidents":{"operator":"mean"}},"drop_missing_columns":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"1__table","viz_type":"echarts_timeseries_line","slice_id":4,"x_axis":"occ_month","time_grain_sqla":"P1M","x_axis_sort_asc":true,"metrics":["total_incidents"],"groupby":[],"contributionMode":null,"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_nyroek3kgfj_7i8wcqkqn2e","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"occ_month"},{"clause":"WHERE","comparator":null,"datasourceWarning":false,"expressionType":"SQL","filterOptionName":"filter_tbmcwesixnm_ai270nbmpgb","isExtra":false,"isNew":false,"operator":null,"sqlExpression":"occ_month
+  < CAST(\n    date_trunc(''month'', current_date)\n    AS date\n)","subject":null}],"order_desc":true,"row_limit":10000,"truncate_metric":true,"show_empty_columns":false,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"x_axis_title_margin":15,"y_axis_title_margin":30,"y_axis_title_position":"Left","sort_series_type":"sum","sort_series_ascending":false,"color_scheme":"supersetColors","show_value":false,"area":true,"opacity":0.2,"markerEnabled":true,"markerSize":6,"minorTicks":false,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelInterval":"auto","rich_tooltip":true,"showTooltipTotal":true,"showTooltipPercentage":true,"tooltipTimeFormat":"smart_date","y_axis_format":"SMART_NUMBER","logAxis":false,"minorSplitLine":false,"truncateXAxis":true,"truncateYAxis":true,"y_axis_bounds":[null,null],"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: eac89890-3e52-4930-868f-f5e1bfa0a0ce
+version: 1.0.0
+dataset_uuid: ac9bd330-8206-4ba0-9b0e-33a3487d285c

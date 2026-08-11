@@ -1,0 +1,147 @@
+table_name: mart_monthly_crime_trends
+main_dttm_col: occ_month
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: lakehouse
+schema: dbt_dev
+sql: ''
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: ac9bd330-8206-4ba0-9b0e-33a3487d285c
+metrics:
+- metric_name: clearance_rate
+  verbose_name: clearance_rate
+  metric_type: null
+  expression: "CAST(SUM(cleared_count) AS DOUBLE)\r\n    / NULLIF(SUM(known_clearance_count),\
+    \ 0)"
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: family_violence_rate
+  verbose_name: family_violence_rate
+  metric_type: null
+  expression: "CAST(SUM(family_violence_count) AS DOUBLE)\n    / NULLIF(SUM(incident_count),\
+    \ 0)"
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: cleared_incidents
+  verbose_name: cleared_incidents
+  metric_type: null
+  expression: SUM(cleared_count)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: total_incidents
+  verbose_name: total_incidents
+  metric_type: null
+  expression: SUM(incident_count)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: crime_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: occ_month
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: known_clearance_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: family_violence_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: cleared_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: incident_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: council_district
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 2f5723af-7f08-4e38-8e2e-67eb017eff6d
