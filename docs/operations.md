@@ -146,8 +146,10 @@ Build dbt models and validate all layers:
 
 ```powershell
 docker compose exec airflow dbt build `
+  --no-partial-parse `
   --project-dir /opt/airflow/project/austin_crime `
-  --profiles-dir /opt/airflow/dbt
+  --profiles-dir /opt/airflow/dbt `
+  --target-path /tmp/austin-crime-dbt-target
 
 docker compose exec airflow python `
   /opt/airflow/project/src/validation/validate_pipeline.py
@@ -335,3 +337,14 @@ Inspect the extraction result. If `has_changes` is false, downstream
 processing is intentionally skipped. If it is true, inspect the first
 failed task and the corresponding PostgreSQL pipeline record before
 retrying.
+
+### dbt fails while parsing adapter macros
+
+Airflow must not use the host-generated `austin_crime/target` cache. The
+orchestrated dbt command disables partial parsing and writes generated
+artifacts to `/tmp/austin-crime-dbt-target` inside the container. If an
+older DAG run failed with a `dbt_trino://macros/...` `KeyError`, deploy
+the corrected DAG and trigger a new run rather than retrying only the
+failed task. The failed pipeline record is retained for auditing, and
+the unchanged watermark makes the new run safely replay the source
+window.

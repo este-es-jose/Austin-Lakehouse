@@ -24,17 +24,24 @@ profile in `airflow/dbt/profiles.yml`:
 
 ```powershell
 docker compose exec airflow dbt build `
+  --no-partial-parse `
   --project-dir /opt/airflow/project/austin_crime `
-  --profiles-dir /opt/airflow/dbt
+  --profiles-dir /opt/airflow/dbt `
+  --target-path /tmp/austin-crime-dbt-target
 ```
 
 Generate and serve dbt documentation:
 
 ```powershell
 docker compose exec airflow dbt docs generate `
+  --no-partial-parse `
   --project-dir /opt/airflow/project/austin_crime `
-  --profiles-dir /opt/airflow/dbt
+  --profiles-dir /opt/airflow/dbt `
+  --target-path /tmp/austin-crime-dbt-target
 ```
+
+The isolated target path prevents the container from reading the
+Windows host's generated `austin_crime/target` cache.
 
 ## Tests
 

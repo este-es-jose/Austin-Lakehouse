@@ -193,10 +193,13 @@ def austin_crime_pipeline():
             [
                 "dbt",
                 "build",
+                "--no-partial-parse",
                 "--project-dir",
                 "/opt/airflow/project/austin_crime",
                 "--profiles-dir",
                 "/opt/airflow/dbt",
+                "--target-path",
+                "/tmp/austin-crime-dbt-target",
             ],
             check=True,
         )
